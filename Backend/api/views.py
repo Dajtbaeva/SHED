@@ -15,6 +15,33 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from api.serializers import *
 
+import smtplib
+from email.mime.text import MIMEText
+from django.conf import settings
+
+
+@api_view(('GET',))
+def send_email(request):
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = 'alibay.tileukhan@gmail.com'
+    EMAIL_HOST_PASSWORD = 'hycogqtwpjyvcbax'
+
+    # Устанавливаем соединение с SMTP-сервером
+    smtp_server = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
+    smtp_server.starttls()
+    smtp_server.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
+
+    # Отправляем письмо
+    from_email = 'alibay.tileukhan@gmail.com'
+    to_email = 'dajtbaeva@gmail.com'
+    message = "darina_chert"
+    subject = "SHED_Registration"
+    msg = f'Subject: {subject}\n\n{message}'
+    smtp_server.sendmail(from_email, to_email, msg)
+
+    return Response({'message': 'aaaaa'})
+
 
 # def get_users_events(request):
 #     body_unicode = request.body.decode('utf-8')
