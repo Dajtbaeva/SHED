@@ -34,8 +34,10 @@ def send_email(request):
 
     # Отправляем письмо
     from_email = 'alibay.tileukhan@gmail.com'
-    to_email = 'dajtbaeva@gmail.com'
-    message = "darina_chert"
+    to_email = 'alibay.tileukhan@gmail.com'
+    message = "You were registered to platform SHED!\n" \
+              "Your login: a_alibay\n" \
+              "Your password: eilajeadnlw"
     subject = "SHED_Registration"
     msg = f'Subject: {subject}\n\n{message}'
     smtp_server.sendmail(from_email, to_email, msg)
